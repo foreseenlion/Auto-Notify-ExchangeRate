@@ -1,17 +1,20 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+echo Delete repo from Raspberry Pi:
 echo ""
-echo Delete repo from Rasberry Pi:
+if (sshpass -f "pass_to_pi" ssh pi@192.168.0.122 "rm -r TelegramBot-ExchangeRate+Stocks" | pv); then
+    echo -e "${GREEN}Delete completed successfully${NC}"
+else
+    echo -e "${RED}Delete faild${NC}"
+fi
 echo ""
-sshpass -f "pass_to_pi" ssh pi@192.168.0.122 "rm -r NotifyMail-ExchangeRate+Stocks" | pv
+echo Copy repo to Raspberry Pi
 echo ""
-echo Delete completed
+if (sshpass -f "pass_to_pi" scp -r NotifyMail-ExchangeRate+Stocks pi@192.168.0.122:/home/pi | pv); then
+    echo -e "${GREEN}Copy completed successfully${NC}"
+else
+    echo -e "${GREEN}Copy faild${NC}"
+fi
 echo ""
-echo Copy repo to Rasberry Pi
-echo ""
-sshpass -f "pass_to_pi" scp -r NotifyMail-ExchangeRate+Stocks pi@192.168.0.122:/home/pi | pv
-echo ""
-echo Copy completed
-echo ""
-
-#TODO
-#check if commands fails
