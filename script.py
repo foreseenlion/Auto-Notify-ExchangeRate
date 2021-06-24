@@ -94,7 +94,11 @@ def Send_Telegram_bot_message():
     base_url = 'https://api.telegram.org/bot{}/sendMessage?chat_id={}&text={}'.format(bot_token, chat_id, message_to_send)
     requests.get(base_url)
 
-Get_ExchangeRate()
-Get_CDPROJECT_stocks()
-Get_Crypto_price()
-Send_Telegram_bot_message()
+def main():
+    Get_ExchangeRate()
+    Get_CDPROJECT_stocks()
+    Get_Crypto_price()
+    Send_Telegram_bot_message()
+
+if __name__ == "__main__":
+    main()
